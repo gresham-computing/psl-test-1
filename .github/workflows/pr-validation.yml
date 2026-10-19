@@ -1,0 +1,19 @@
+name: PR Creation Check
+
+# Trigger the workflow only when a Pull Request is opened
+on:
+  pull_request:
+    types: [opened]
+    branches: main
+
+jobs:
+  pr-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run validation script
+        run: |
+          echo "Pull Request #${{ github.event.pull_request.number }} was successfully created!"
+          echo "PR Title: ${{ github.event.pull_request.title }}"
